@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use App\Models\Post;
 
 class PostsController extends Controller
 {
@@ -19,7 +20,6 @@ class PostsController extends Controller
     }
 
     public function store(){
-
 
         $data = request()->validate([
 
@@ -39,5 +39,10 @@ class PostsController extends Controller
         ]);
 
         return redirect('/profile/' .auth()->user()->id);
+    }
+
+    public function show(Post $post){
+
+        return view('posts/show', compact('post'));
     }
 }
